@@ -68,7 +68,15 @@ def main():
             print("\n\nIndique el rango de valores a usar aleatoriamente:")
             rango_desde = int(input("\nDesde el número: "))
             rango_hasta = int(input("\nHasta el numero: "))
+            if rango_hasta <= rango_desde:
+                print("\nEl valor 'Hasta el número' debe ser mayor que 'Desde el número'. Vuelve a intentarlo.")
+                input("\nPresiona Enter para continuar...")
+                continue
             cantidad_datos = int(input("\nCantidad de datos aleatorios a genera: "))
+            if cantidad_datos <= 0:
+                print("\nLa cantidad de datos debe ser un número positivo. Vuelve a intentarlo.")
+                input("\nPresiona Enter para continuar...")
+                continue
             datos_generados = np.random.choice(range(rango_desde, rango_hasta), size=cantidad_datos, replace=True)
             pantalla_generado_datos()
 
