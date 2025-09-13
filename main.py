@@ -1,61 +1,12 @@
-import os
-import time
 import numpy as np
+from helpers import (
+    limpiar_pantalla,
+    mostrar_graficos,
+    mostrar_pantalla_principal,
+    pantalla_generado_datos
+) 
 
 
-def limpiar_pantalla():
-    os.system("cls")
-
-
-def mostrar_pantalla_principal():
-    limpiar_pantalla()
-    print("""
-    ╔═══════════════════════════════════════════════════╗
-    ║             MÁQUINA DE PROBABILIDAD               ║
-    ║               Análisis de Emails                  ║
-    ╚═══════════════════════════════════════════════════╝
-
-            1) Generar nuevo datos.
-            2) Ver estadísticas.
-            0) Salir
-
-    """)
-
-
-def pantalla_generado_datos():
-    limpiar_pantalla()
-    print("""
-        ╔═══════════════════════════════════════════════════╗
-        ║               Generando los datos,                ║
-        ║               Por favor espere...                 ║
-        ╚═══════════════════════════════════════════════════╝
-        """)
-    time.sleep(3)
-    limpiar_pantalla()
-    print("""
-        ╔═══════════════════════════════════════════════════╗
-        ║          Datos generados con éxito!!!             ║
-        ╚═══════════════════════════════════════════════════╝
-        """)
-    input("\nPresiona Enter para continuar...")
-
-
-def pantalla_calculando_datos():
-    limpiar_pantalla()
-    print("""
-        ╔═══════════════════════════════════════════════════╗
-        ║               Contando los elementos              ║
-        ║               Por favor espere...                 ║
-        ╚═══════════════════════════════════════════════════╝
-        """)
-    time.sleep(3)
-    limpiar_pantalla()
-    print("""
-        ╔═══════════════════════════════════════════════════╗
-        ║          Datos generados con éxito!!!             ║
-        ╚═══════════════════════════════════════════════════╝
-        """)
-    input("\nPresiona Enter para continuar...")
 
 def main():
     datos_generados = []
@@ -80,7 +31,7 @@ def main():
             datos_generados = np.random.choice(range(rango_desde, rango_hasta), size=cantidad_datos, replace=True)
             pantalla_generado_datos()
 
-            
+
         elif seleccion == "2":
             if len(datos_generados) < 1:
                 print("\nNo tienes datos generados, vuelve a intentarlo")
@@ -99,6 +50,16 @@ def main():
                 print(f"📏 Cantidad de datos: {len(datos_generados)}")
                 
                 input("\nPresiona Enter para continuar...")
+
+
+        elif seleccion == "3":
+                    if len(datos_generados) < 1:
+                        print("\nNo tienes datos generados, vuelve a intentarlo")
+                        input("\nPresiona Enter para continuar...")
+                    else:
+                        mostrar_graficos(datos_generados)
+
+
         elif seleccion == "0":
             print("\nGracias por usar nuestros programa!!!!! Hasta la vista!!!!")
             break
